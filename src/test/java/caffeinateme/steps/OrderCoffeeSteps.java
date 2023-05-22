@@ -4,6 +4,7 @@ import caffeinateme.model.CoffeeShop;
 import caffeinateme.model.Customer;
 import caffeinateme.model.Order;
 import caffeinateme.model.OrderStatus;
+import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
@@ -15,7 +16,7 @@ public class OrderCoffeeSteps {
     CoffeeShop coffeeShop = new CoffeeShop();
     Order order;
 
-    @Given("^(.*) is a CaffeinateMe customer")
+    @Given("{} is a CaffeinateMe customer")
     public void a_caffeinate_me_customer_named(String customerName){
         customer = coffeeShop.registerNewCustomer(customerName);
     }
@@ -41,5 +42,17 @@ public class OrderCoffeeSteps {
         Order cathysOrder = coffeeShop.getOrderFor(customer)
                 .orElseThrow(() -> new AssertionError("No order found!"));
         assertThat(cathysOrder.getStatus()).isEqualTo(expectedStatus);
+    }
+
+    @When("Cathy orders a {string} with a comment {string}")
+    public void cathyOrdersAWithAComment(String orderedProduct, String comment) {
+        this.order = Order.of(1,orderedProduct).forCustomer(customer).withComment(comment);
+        customer.placesAnOrderFor(order).at(coffeeShop);
+    }
+
+    @And("the order should have the comment {string}")
+    public void theOrderShouldHaveTheComment(String comment) {
+        Order order = coffeeShop.getOrderFor(customer).get();
+        assertThat(order.getComment()).isEqualTo(comment);
     }
 }
