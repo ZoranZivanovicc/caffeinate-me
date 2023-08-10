@@ -12,5 +12,11 @@ Feature: Place an order
     Given Cathy has a Caffeinate-Me account
     When she orders a large cappuccino
     Then Barry should receive the order
+    And Barry should know that the coffe is Urgent
 
+    Example: Buyer orders a coffee when they are close to the coffee shop
+      Given Cathy is 100 meters from the coffe shop
+      When Cathy orders a large cappuccino
+      Then Barry should receive the order
+      And Barry should know that the coffe is Urgent
 

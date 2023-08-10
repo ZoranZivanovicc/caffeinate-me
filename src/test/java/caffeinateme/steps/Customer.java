@@ -9,6 +9,7 @@ import net.thucydides.core.annotations.Steps;
 public class Customer extends ScenarioActor {
 
     private long customerId;
+    private int distanceFromShop;
 
     @Steps(shared = true)
     CoffeeOrdersClient coffeeOrders;
@@ -34,5 +35,10 @@ public class Customer extends ScenarioActor {
     @Step("#actor requests a receipt")
     public Receipt requestsAReceipt() {
         return coffeeOrders.getReceiptFor(customerId);
+    }
+
+
+    public void setDistanceFromShop(Integer distanceFromShop) {
+        this.distanceFromShop = distanceFromShop;
     }
 }

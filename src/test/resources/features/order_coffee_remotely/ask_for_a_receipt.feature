@@ -22,3 +22,4 @@ Feature: Ask for a receipt
       | Product          | Quantity | Price |
       | large cappuccino | 1        | 2.25  |
       | muffin           | 2        | 2.50  |
+

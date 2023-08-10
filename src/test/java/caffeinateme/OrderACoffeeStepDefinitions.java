@@ -99,4 +99,17 @@ public class OrderACoffeeStepDefinitions {
     public void theReceiptShouldContainTheLineItems(List<ReceiptLineItem> expectedLineItems) throws Throwable {
         assertThat(receipt.getLineItems()).containsExactlyElementsOf(expectedLineItems);
     }
+    @Then("Barry should know that the coffe is Urgent")
+    public void barry_should_know_that_the_coffe_is_urgent() {
+        // Write code here that turns the phrase above into concrete actions
+        throw new io.cucumber.java.PendingException();
+    }
+
+    @Given("Cathy is {int} meters from the coffe shop")
+    public void cathy_is_n_meters_from_the_coffe_shop(Integer distanceInMeters) {
+        // Write code here that turns the phrase above into concrete actions
+        Customer cathy = new Customer();
+        cathy.setDistanceFromShop(distanceInMeters);
+    }
+
 }
